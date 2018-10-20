@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB32A0CE217AA25D00A9D6ED /* Sonos.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0CD217AA25D00A9D6ED /* Sonos.swift */; };
+		BB32A0D0217AD75900A9D6ED /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0CF217AD75900A9D6ED /* URLTests.swift */; };
+		BB32A0D2217ADC3B00A9D6ED /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D1217ADC3B00A9D6ED /* URL.swift */; };
 		BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */; };
 		BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0E217667DC00C2B411 /* ViewController.swift */; };
 		BBEF4D12217667DC00C2B411 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBEF4D10217667DC00C2B411 /* Main.storyboard */; };
@@ -26,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB32A0CD217AA25D00A9D6ED /* Sonos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sonos.swift; sourceTree = "<group>"; };
+		BB32A0CF217AD75900A9D6ED /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		BB32A0D1217ADC3B00A9D6ED /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		BBEF4D09217667DC00C2B411 /* SonosControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonosControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBEF4D0E217667DC00C2B411 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,8 @@
 				BBEF4D13217667DE00C2B411 /* Assets.xcassets */,
 				BBEF4D15217667DE00C2B411 /* LaunchScreen.storyboard */,
 				BBEF4D18217667DE00C2B411 /* Info.plist */,
+				BB32A0CD217AA25D00A9D6ED /* Sonos.swift */,
+				BB32A0D1217ADC3B00A9D6ED /* URL.swift */,
 			);
 			path = SonosControl;
 			sourceTree = "<group>";
@@ -92,6 +100,7 @@
 			children = (
 				BBEF4D21217667DE00C2B411 /* SonosControlTests.swift */,
 				BBEF4D23217667DE00C2B411 /* Info.plist */,
+				BB32A0CF217AD75900A9D6ED /* URLTests.swift */,
 			);
 			path = SonosControlTests;
 			sourceTree = "<group>";
@@ -199,6 +208,8 @@
 			files = (
 				BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */,
 				BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */,
+				BB32A0CE217AA25D00A9D6ED /* Sonos.swift in Sources */,
+				BB32A0D2217ADC3B00A9D6ED /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBEF4D22217667DE00C2B411 /* SonosControlTests.swift in Sources */,
+				BB32A0D0217AD75900A9D6ED /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
