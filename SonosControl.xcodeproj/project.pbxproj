@@ -10,6 +10,7 @@
 		BB32A0CE217AA25D00A9D6ED /* Sonos.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0CD217AA25D00A9D6ED /* Sonos.swift */; };
 		BB32A0D0217AD75900A9D6ED /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0CF217AD75900A9D6ED /* URLTests.swift */; };
 		BB32A0D2217ADC3B00A9D6ED /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D1217ADC3B00A9D6ED /* URL.swift */; };
+		BB32A0D4217AE2EF00A9D6ED /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB32A0D3217AE2EF00A9D6ED /* Key.plist */; };
 		BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */; };
 		BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0E217667DC00C2B411 /* ViewController.swift */; };
 		BBEF4D12217667DC00C2B411 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBEF4D10217667DC00C2B411 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		BB32A0CD217AA25D00A9D6ED /* Sonos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sonos.swift; sourceTree = "<group>"; };
 		BB32A0CF217AD75900A9D6ED /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		BB32A0D1217ADC3B00A9D6ED /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		BB32A0D3217AE2EF00A9D6ED /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 		BBEF4D09217667DC00C2B411 /* SonosControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonosControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBEF4D0E217667DC00C2B411 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				BBEF4D18217667DE00C2B411 /* Info.plist */,
 				BB32A0CD217AA25D00A9D6ED /* Sonos.swift */,
 				BB32A0D1217ADC3B00A9D6ED /* URL.swift */,
+				BB32A0D3217AE2EF00A9D6ED /* Key.plist */,
 			);
 			path = SonosControl;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB32A0D4217AE2EF00A9D6ED /* Key.plist in Resources */,
 				BBEF4D17217667DE00C2B411 /* LaunchScreen.storyboard in Resources */,
 				BBEF4D14217667DE00C2B411 /* Assets.xcassets in Resources */,
 				BBEF4D12217667DC00C2B411 /* Main.storyboard in Resources */,
