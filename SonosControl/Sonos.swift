@@ -13,21 +13,24 @@ extension URLComponents {
 
 class Sonos: NetworkingClient {
   let baseURL = "https://api.sonos.com/"
-
-  func sendRequest(_ method: HTTPMethod, _ path: String, _ parameter: ParameterDict, body: Data?, callback: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
-    var components = URLComponents(url: URL(string: baseURL)!, resolvingAgainstBaseURL: false)!
-    components.path += path
-    components.queryItems = parameter.map { URLQueryItem(name: $0, value: $1) }
-    var request = URLRequest(url: components.url!)
-    request.httpMethod = method.rawValue
-    request.httpBody = body
-    
+  
+  func send(request: URLRequest, callback: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       let httpResponse = response as! HTTPURLResponse?
       callback(data, httpResponse, error)
     }
     
     task.resume()
+  }
+  
+  func request(_ method: HTTPMethod, _ path: String, _ parameter: ParameterDict, body: Data?) -> URLRequest {
+    var components = URLComponents(url: URL(string: baseURL)!, resolvingAgainstBaseURL: false)!
+    components.path += path
+    components.queryItems = parameter.map { URLQueryItem(name: $0, value: $1) }
+    var request = URLRequest(url: components.url!)
+    request.httpMethod = method.rawValue
+    request.httpBody = body
+    return request
   }
 }
 
