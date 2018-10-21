@@ -11,12 +11,16 @@
 		BB32A0D0217AD75900A9D6ED /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0CF217AD75900A9D6ED /* URLTests.swift */; };
 		BB32A0D2217ADC3B00A9D6ED /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D1217ADC3B00A9D6ED /* URL.swift */; };
 		BB32A0D4217AE2EF00A9D6ED /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB32A0D3217AE2EF00A9D6ED /* Key.plist */; };
+		BB32A0D6217AF3A700A9D6ED /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D5217AF3A700A9D6ED /* Keychain.swift */; };
+		BB32A0D8217BF18900A9D6ED /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D7217BF18900A9D6ED /* Promise.swift */; };
+		BB32A0DA217BF1A000A9D6ED /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D9217BF1A000A9D6ED /* NetworkingClient.swift */; };
+		BB32A0DD217BF8C000A9D6ED /* CreateTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */; };
+		BB32A0DF217CFBCC00A9D6ED /* SonosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0DE217CFBCC00A9D6ED /* SonosTests.swift */; };
 		BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */; };
 		BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0E217667DC00C2B411 /* ViewController.swift */; };
 		BBEF4D12217667DC00C2B411 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBEF4D10217667DC00C2B411 /* Main.storyboard */; };
 		BBEF4D14217667DE00C2B411 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBEF4D13217667DE00C2B411 /* Assets.xcassets */; };
 		BBEF4D17217667DE00C2B411 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBEF4D15217667DE00C2B411 /* LaunchScreen.storyboard */; };
-		BBEF4D22217667DE00C2B411 /* SonosControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D21217667DE00C2B411 /* SonosControlTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,11 @@
 		BB32A0CF217AD75900A9D6ED /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		BB32A0D1217ADC3B00A9D6ED /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		BB32A0D3217AE2EF00A9D6ED /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
+		BB32A0D5217AF3A700A9D6ED /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		BB32A0D7217BF18900A9D6ED /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		BB32A0D9217BF1A000A9D6ED /* NetworkingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
+		BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenResponse.swift; sourceTree = "<group>"; };
+		BB32A0DE217CFBCC00A9D6ED /* SonosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosTests.swift; sourceTree = "<group>"; };
 		BBEF4D09217667DC00C2B411 /* SonosControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonosControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBEF4D0E217667DC00C2B411 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +51,6 @@
 		BBEF4D16217667DE00C2B411 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBEF4D18217667DE00C2B411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBEF4D1D217667DE00C2B411 /* SonosControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SonosControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBEF4D21217667DE00C2B411 /* SonosControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosControlTests.swift; sourceTree = "<group>"; };
 		BBEF4D23217667DE00C2B411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB32A0DB217BF8A200A9D6ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BBEF4D00217667DC00C2B411 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +101,7 @@
 		BBEF4D0B217667DC00C2B411 /* SonosControl */ = {
 			isa = PBXGroup;
 			children = (
+				BB32A0DB217BF8A200A9D6ED /* Model */,
 				BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */,
 				BBEF4D0E217667DC00C2B411 /* ViewController.swift */,
 				BBEF4D10217667DC00C2B411 /* Main.storyboard */,
@@ -92,8 +109,11 @@
 				BBEF4D15217667DE00C2B411 /* LaunchScreen.storyboard */,
 				BBEF4D18217667DE00C2B411 /* Info.plist */,
 				BB32A0CD217AA25D00A9D6ED /* Sonos.swift */,
+				BB32A0D7217BF18900A9D6ED /* Promise.swift */,
+				BB32A0D9217BF1A000A9D6ED /* NetworkingClient.swift */,
 				BB32A0D1217ADC3B00A9D6ED /* URL.swift */,
 				BB32A0D3217AE2EF00A9D6ED /* Key.plist */,
+				BB32A0D5217AF3A700A9D6ED /* Keychain.swift */,
 			);
 			path = SonosControl;
 			sourceTree = "<group>";
@@ -101,9 +121,9 @@
 		BBEF4D20217667DE00C2B411 /* SonosControlTests */ = {
 			isa = PBXGroup;
 			children = (
-				BBEF4D21217667DE00C2B411 /* SonosControlTests.swift */,
 				BBEF4D23217667DE00C2B411 /* Info.plist */,
 				BB32A0CF217AD75900A9D6ED /* URLTests.swift */,
+				BB32A0DE217CFBCC00A9D6ED /* SonosTests.swift */,
 			);
 			path = SonosControlTests;
 			sourceTree = "<group>";
@@ -210,10 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB32A0DD217BF8C000A9D6ED /* CreateTokenResponse.swift in Sources */,
+				BB32A0DA217BF1A000A9D6ED /* NetworkingClient.swift in Sources */,
 				BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */,
 				BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */,
 				BB32A0CE217AA25D00A9D6ED /* Sonos.swift in Sources */,
 				BB32A0D2217ADC3B00A9D6ED /* URL.swift in Sources */,
+				BB32A0D6217AF3A700A9D6ED /* Keychain.swift in Sources */,
+				BB32A0D8217BF18900A9D6ED /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,8 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBEF4D22217667DE00C2B411 /* SonosControlTests.swift in Sources */,
 				BB32A0D0217AD75900A9D6ED /* URLTests.swift in Sources */,
+				BB32A0DF217CFBCC00A9D6ED /* SonosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

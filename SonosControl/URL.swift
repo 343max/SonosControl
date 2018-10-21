@@ -21,3 +21,13 @@ extension URL {
   }
 }
 
+extension Dictionary where Key == String, Value == String {
+  var queryString: String {
+    get {
+      return self.reduce(into: [] as [String], { (array, tupel) in
+        let (key, value) = tupel
+        array.append("\(key.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)=\(value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)")
+      }).joined(separator: "&")
+    }
+  }
+}
