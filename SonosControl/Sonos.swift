@@ -12,7 +12,18 @@ extension URLComponents {
 }
 
 class Sonos: NetworkingClient {
+  struct Configuration {
+    let redirectURL: URL
+    let clientKey: String
+    let clientSectret: String
+  }
+  
+  let configuration: Configuration
   let baseURL = "https://api.sonos.com/"
+  
+  init(configuration: Configuration) {
+    self.configuration = configuration
+  }
   
   func send(request: URLRequest, callback: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -35,26 +46,14 @@ class Sonos: NetworkingClient {
 }
 
 extension Sonos {
-  func loginURL(state: String, redirectUri: URL) -> URL {
+  func loginURL(state: String) -> URL {
     return URLComponents(string: baseURL + "login/v3/oauth", queryItems: [
-      "client_id": clientKey,
+      "client_id": configuration.clientKey,
       "response_type": "code",
       "state": state,
       "scope": "playback-control-all",
-      "redirect_uri": redirectUri.absoluteString
+      "redirect_uri": configuration.redirectURL.absoluteString
       ])!.url!
-  }
-}
-
-extension Sonos {
-  var clientKey: String {
-    get {
-      guard let url = Bundle.main.url(forResource: "Key", withExtension: "plist") else {
-        assert(false, "Please create Key.plist with a SonosAPIKey string value")
-      }
-      let dict = NSDictionary(contentsOf: url)!
-      return dict["SonosAPIKey"] as! String
-    }
   }
 }
 
