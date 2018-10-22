@@ -51,6 +51,12 @@ class ViewController: UIViewController {
   func loadHousehold() {
     try! sonos.households().then {
       print("households: \($0)")
+      }.then {
+        $0.forEach({ (id) in
+          try! self.sonos.household(id: id).then {
+            print("household: \($0)")
+          }
+        })
     }
   }
 }

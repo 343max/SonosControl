@@ -19,7 +19,7 @@ class Sonos: NetworkingClient {
   }
   
   let authentificationBaseURL = "https://api.sonos.com/"
-  let baseURL = "https://api.ws.sonos.com/"
+  let baseURL = "https://api.ws.sonos.com/control/api/v1/"
   let configuration: Configuration
   var accessToken: AccessToken?
   
@@ -91,14 +91,21 @@ extension Sonos {
 }
 
 extension Sonos {
-  private struct HouseholdId: Decodable {
-    let id: String
+  private struct Households: Decodable {
+    struct HouseholdId: Decodable {
+      let id: String
+    }
+    let households: [HouseholdId]
   }
   
-  func households() throws -> Promise<[Household.Id]> {
-    return try send(request: authorized(request: request(.GET, "control/api/v1/households")), type: [HouseholdId].self).map({ (ids) -> [Household.Id] in
-      return ids.map { return $0.id }
+  func households() throws -> Promise<[String]> {
+    return try send(request: authorized(request: request(.GET, "households")), type: Households.self).map({ (household) -> [String] in
+      return household.households.map { $0.id }
     })
+  }
+  
+  func household(id: String) throws -> Promise<Household> {
+    return try send(request: authorized(request: request(.GET, "households/\(id)/groups")), type: Household.self)
   }
 }
 
