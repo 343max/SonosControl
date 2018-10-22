@@ -15,20 +15,19 @@ import Foundation
  
 */
 
-struct CreateTokenResponse: Decodable {
+struct CreateTokenResponse: Codable {
   let accessToken: String
   let tokenType: String
   let expires: Date
   let refreshToken: String
-  let resourceOwner: String
   let scope: String
   
   enum CodingKeys: String, CodingKey {
     case accessToken = "access_token"
     case tokenType = "token_type"
     case expiresIn = "expires_in"
+    case expires = "expires"
     case refreshToken = "refresh_token"
-    case resourceOwner = "resource_owner"
     case scope = "scope"
   }
   
@@ -36,9 +35,32 @@ struct CreateTokenResponse: Decodable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.accessToken = try container.decode(String.self, forKey: .accessToken)
     self.tokenType = try container.decode(String.self, forKey: .tokenType)
-    self.expires = try Date(timeIntervalSinceNow: TimeInterval(container.decode(Int.self, forKey: .expiresIn)))
+    if container.contains(.expiresIn) {
+      self.expires = try Date(timeIntervalSinceNow: TimeInterval(container.decode(Float.self, forKey: .expiresIn)))
+    } else {
+      self.expires = try Date(timeIntervalSince1970: TimeInterval(container.decode(Float.self, forKey: .expires)))
+    }
     self.refreshToken = try container.decode(String.self, forKey: .refreshToken)
-    self.resourceOwner = try container.decode(String.self, forKey: .resourceOwner)
     self.scope = try container.decode(String.self, forKey: .scope)
+  }
+  
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.accessToken, forKey: .accessToken)
+    try container.encode(self.tokenType, forKey: .tokenType)
+    try container.encode(self.expires.timeIntervalSince1970, forKey: .expires)
+    try container.encode(self.refreshToken, forKey: .refreshToken)
+    try container.encode(self.scope, forKey: .scope)
+  }
+}
+
+extension Keychain {
+  private static let accessTokenTag = "de.343max.SonosController.accessToken"
+  static func getAccessToken() throws -> CreateTokenResponse? {
+    return try get(tag: accessTokenTag, type: CreateTokenResponse.self)
+  }
+  
+  static func set(accessToken: CreateTokenResponse) throws {
+    try set(tag: accessTokenTag, value: accessToken)
   }
 }

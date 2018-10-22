@@ -18,8 +18,9 @@ class Sonos: NetworkingClient {
     let clientSectret: String
   }
   
-  let configuration: Configuration
   let baseURL = "https://api.sonos.com/"
+  let configuration: Configuration
+  var accessToken: CreateTokenResponse?
   
   init(configuration: Configuration) {
     self.configuration = configuration
@@ -54,6 +55,18 @@ extension Sonos {
       "scope": "playback-control-all",
       "redirect_uri": configuration.redirectURL.absoluteString
       ])!.url!
+  }
+  
+  func createAccessToken(authorizationCode: String) -> Promise<CreateTokenResponse> {
+    let queyItems = [
+      "grant_type": "authorization_code",
+      "code": authorizationCode,
+      "redirect_uri": configuration.redirectURL.absoluteString
+    ]
+    var request = self.request(.POST, "login/v3/oauth/access", [:], body: queyItems.queryString.data(using: .utf8))
+    let authorization = "\(configuration.clientKey):\(configuration.clientSectret)"
+    request.setValue("Basic " + authorization.data(using: .utf8)!.base64EncodedString(), forHTTPHeaderField: "Authorization")
+    return send(request: request, type: CreateTokenResponse.self)
   }
 }
 

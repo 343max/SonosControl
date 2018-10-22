@@ -18,22 +18,31 @@ extension Sonos.Configuration {
 class ViewController: UIViewController {
   var authenticationSession: ASWebAuthenticationSession?
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
+  override func viewDidLoad() {
     let sonos = Sonos(configuration: .appConfig())
     
-    let url = sonos.loginURL(state: "hello")
-    let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "de.343max.sonoscontrol") { (url, error) in
-      guard let url = url else {
-        return
+    if let accessToken = try! Keychain.getAccessToken() {
+      sonos.accessToken = accessToken
+    } else {
+      let url = sonos.loginURL(state: "hello")
+      let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "de.343max.sonoscontrol") { (url, error) in
+        guard let url = url else {
+          return
+        }
+        
+        let authorizationCode = Sonos.authorizationCode(from: url)
+        sonos.createAccessToken(authorizationCode: authorizationCode).then {
+          try! Keychain.set(accessToken: $0)
+          sonos.accessToken = $0
+        }
       }
-      
-      let authorizationCode = Sonos.authorizationCode(from: url)
+      authenticationSession.start()
+      self.authenticationSession = authenticationSession
     }
-    authenticationSession.start()
-    self.authenticationSession = authenticationSession
   }
-
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+  }
 }
 
