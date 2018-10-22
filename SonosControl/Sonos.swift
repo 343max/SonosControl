@@ -18,7 +18,8 @@ class Sonos: NetworkingClient {
     let clientSectret: String
   }
   
-  let baseURL = "https://api.sonos.com/"
+  let authentificationBaseURL = "https://api.sonos.com/"
+  let baseURL = "https://api.ws.sonos.com/"
   let configuration: Configuration
   var accessToken: AccessToken?
   
@@ -35,10 +36,12 @@ class Sonos: NetworkingClient {
     task.resume()
   }
   
-  func request(_ method: HTTPMethod, _ path: String, _ parameter: ParameterDict, body: Data?) -> URLRequest {
+  func request(_ method: HTTPMethod, _ path: String, parameter: ParameterDict? = nil, body: Data? = nil) -> URLRequest {
     var components = URLComponents(url: URL(string: baseURL)!, resolvingAgainstBaseURL: false)!
     components.path += path
-    components.queryItems = parameter.map { URLQueryItem(name: $0, value: $1) }
+    if let parameter = parameter {
+      components.queryItems = parameter.map { URLQueryItem(name: $0, value: $1) }
+    }
     var request = URLRequest(url: components.url!)
     request.httpMethod = method.rawValue
     request.httpBody = body
@@ -47,8 +50,12 @@ class Sonos: NetworkingClient {
 }
 
 extension Sonos {
+  enum AuthorizationError: Error {
+    case unauthorized
+  }
+  
   func loginURL(state: String) -> URL {
-    return URLComponents(string: baseURL + "login/v3/oauth", queryItems: [
+    return URLComponents(string: authentificationBaseURL + "login/v3/oauth", queryItems: [
       "client_id": configuration.clientKey,
       "response_type": "code",
       "state": state,
@@ -63,10 +70,35 @@ extension Sonos {
       "code": authorizationCode,
       "redirect_uri": configuration.redirectURL.absoluteString
     ]
-    var request = self.request(.POST, "login/v3/oauth/access", [:], body: queyItems.queryString.data(using: .utf8))
+    var request = URLRequest(url: URL(string: authentificationBaseURL + "login/v3/oauth/access")!)
+    request.httpMethod = "POST"
+    request.httpBody = queyItems.queryString.data(using: .utf8)
     let authorization = "\(configuration.clientKey):\(configuration.clientSectret)"
     request.setValue("Basic " + authorization.data(using: .utf8)!.base64EncodedString(), forHTTPHeaderField: "Authorization")
     return send(request: request, type: AccessToken.self)
+  }
+  
+  func authorized(request: URLRequest) throws -> URLRequest {
+    guard let token = self.accessToken else {
+      throw AuthorizationError.unauthorized
+    }
+    
+    var request = request
+    request.setValue("Bearer " + token.accessToken, forHTTPHeaderField: "Authorization")
+    request.setValue(configuration.clientKey, forHTTPHeaderField: "X-Sonos-Api-Key")
+    return request
+  }
+}
+
+extension Sonos {
+  private struct HouseholdId: Decodable {
+    let id: String
+  }
+  
+  func households() throws -> Promise<[Household.Id]> {
+    return try send(request: authorized(request: request(.GET, "control/api/v1/households")), type: [HouseholdId].self).map({ (ids) -> [Household.Id] in
+      return ids.map { return $0.id }
+    })
   }
 }
 

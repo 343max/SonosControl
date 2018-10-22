@@ -11,7 +11,7 @@ protocol NetworkingClient {
   typealias ParameterDict = [String: String]
 
   func send(request: URLRequest, callback: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
-  func request(_ method: HTTPMethod, _ path: String, _ parameter: ParameterDict, body: Data?) -> URLRequest
+  func request(_ method: HTTPMethod, _ path: String, parameter: ParameterDict?, body: Data?) -> URLRequest
 }
 
 extension NetworkingClient {
@@ -31,19 +31,5 @@ extension NetworkingClient {
         }
       }
     })
-  }
-}
-
-extension NetworkingClient {
-  func GET(_ path: String, _ parameter: ParameterDict, callback: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
-    send(request: request(.GET, path, parameter, body: nil), callback: callback)
-  }
-  
-  func GET<T>(_ method: HTTPMethod, _ path: String, _ parameter: ParameterDict, type: T.Type) -> Promise<T> where T : Decodable {
-    return send(request: request(.GET, path, parameter, body: nil), type: type)
-  }
-  
-  func POST<T>(_ path: String, queryItems: ParameterDict = [:], bodyItems: ParameterDict = [:], type: T.Type) -> Promise<T> where T: Decodable {
-    return send(request: request(.POST, path, queryItems, body: bodyItems.queryString.data(using: .utf8)), type: type)
   }
 }

@@ -17,12 +17,14 @@ extension Sonos.Configuration {
 
 class ViewController: UIViewController {
   var authenticationSession: ASWebAuthenticationSession?
+  var sonos: Sonos!
   
   override func viewDidLoad() {
-    let sonos = Sonos(configuration: .appConfig())
+    sonos = Sonos(configuration: .appConfig())
     
     if let accessToken = try! Keychain.getAccessToken() {
       sonos.accessToken = accessToken
+      loadHousehold()
     } else {
       let url = sonos.loginURL(state: "hello")
       let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "de.343max.sonoscontrol") { (url, error) in
@@ -31,9 +33,10 @@ class ViewController: UIViewController {
         }
         
         let authorizationCode = Sonos.authorizationCode(from: url)
-        sonos.createAccessToken(authorizationCode: authorizationCode).then {
+        self.sonos.createAccessToken(authorizationCode: authorizationCode).then {
           try! Keychain.set(accessToken: $0)
-          sonos.accessToken = $0
+          self.sonos.accessToken = $0
+          self.loadHousehold()
         }
       }
       authenticationSession.start()
@@ -43,6 +46,12 @@ class ViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+  }
+  
+  func loadHousehold() {
+    try! sonos.households().then {
+      print("households: \($0)")
+    }
   }
 }
 
