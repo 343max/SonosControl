@@ -14,7 +14,7 @@
 		BB32A0D6217AF3A700A9D6ED /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D5217AF3A700A9D6ED /* Keychain.swift */; };
 		BB32A0D8217BF18900A9D6ED /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D7217BF18900A9D6ED /* Promise.swift */; };
 		BB32A0DA217BF1A000A9D6ED /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0D9217BF1A000A9D6ED /* NetworkingClient.swift */; };
-		BB32A0DD217BF8C000A9D6ED /* CreateTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */; };
+		BB32A0DD217BF8C000A9D6ED /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0DC217BF8C000A9D6ED /* AccessToken.swift */; };
 		BB32A0DF217CFBCC00A9D6ED /* SonosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32A0DE217CFBCC00A9D6ED /* SonosTests.swift */; };
 		BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */; };
 		BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEF4D0E217667DC00C2B411 /* ViewController.swift */; };
@@ -41,7 +41,7 @@
 		BB32A0D5217AF3A700A9D6ED /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		BB32A0D7217BF18900A9D6ED /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		BB32A0D9217BF1A000A9D6ED /* NetworkingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingClient.swift; sourceTree = "<group>"; };
-		BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenResponse.swift; sourceTree = "<group>"; };
+		BB32A0DC217BF8C000A9D6ED /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		BB32A0DE217CFBCC00A9D6ED /* SonosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosTests.swift; sourceTree = "<group>"; };
 		BBEF4D09217667DC00C2B411 /* SonosControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonosControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEF4D0C217667DC00C2B411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		BB32A0DB217BF8A200A9D6ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BB32A0DC217BF8C000A9D6ED /* CreateTokenResponse.swift */,
+				BB32A0DC217BF8C000A9D6ED /* AccessToken.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,7 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB32A0DD217BF8C000A9D6ED /* CreateTokenResponse.swift in Sources */,
+				BB32A0DD217BF8C000A9D6ED /* AccessToken.swift in Sources */,
 				BB32A0DA217BF1A000A9D6ED /* NetworkingClient.swift in Sources */,
 				BBEF4D0F217667DC00C2B411 /* ViewController.swift in Sources */,
 				BBEF4D0D217667DC00C2B411 /* AppDelegate.swift in Sources */,

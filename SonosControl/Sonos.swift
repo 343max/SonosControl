@@ -20,7 +20,7 @@ class Sonos: NetworkingClient {
   
   let baseURL = "https://api.sonos.com/"
   let configuration: Configuration
-  var accessToken: CreateTokenResponse?
+  var accessToken: AccessToken?
   
   init(configuration: Configuration) {
     self.configuration = configuration
@@ -57,7 +57,7 @@ extension Sonos {
       ])!.url!
   }
   
-  func createAccessToken(authorizationCode: String) -> Promise<CreateTokenResponse> {
+  func createAccessToken(authorizationCode: String) -> Promise<AccessToken> {
     let queyItems = [
       "grant_type": "authorization_code",
       "code": authorizationCode,
@@ -66,7 +66,7 @@ extension Sonos {
     var request = self.request(.POST, "login/v3/oauth/access", [:], body: queyItems.queryString.data(using: .utf8))
     let authorization = "\(configuration.clientKey):\(configuration.clientSectret)"
     request.setValue("Basic " + authorization.data(using: .utf8)!.base64EncodedString(), forHTTPHeaderField: "Authorization")
-    return send(request: request, type: CreateTokenResponse.self)
+    return send(request: request, type: AccessToken.self)
   }
 }
 

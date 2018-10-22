@@ -15,7 +15,7 @@ import Foundation
  
 */
 
-struct CreateTokenResponse: Codable {
+struct AccessToken: Codable {
   let accessToken: String
   let tokenType: String
   let expires: Date
@@ -56,11 +56,11 @@ struct CreateTokenResponse: Codable {
 
 extension Keychain {
   private static let accessTokenTag = "de.343max.SonosController.accessToken"
-  static func getAccessToken() throws -> CreateTokenResponse? {
-    return try get(tag: accessTokenTag, type: CreateTokenResponse.self)
+  static func getAccessToken() throws -> AccessToken? {
+    return try get(tag: accessTokenTag, type: AccessToken.self)
   }
   
-  static func set(accessToken: CreateTokenResponse) throws {
+  static func set(accessToken: AccessToken) throws {
     try set(tag: accessTokenTag, value: accessToken)
   }
 }
