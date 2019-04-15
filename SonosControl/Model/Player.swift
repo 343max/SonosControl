@@ -3,7 +3,7 @@
 import Foundation
 
 /*
- 
+
  {
  "id": "RINCON_7828CA1D4E0201400",
  "name": "Wohnzimmer",
@@ -15,7 +15,7 @@ import Foundation
  "minApiVersion": "1.1.0",
  "capabilities": ["PLAYBACK", "CLOUD", "AIRPLAY"]
  }
- 
+
  */
 
 struct Player: Decodable {
@@ -29,7 +29,7 @@ struct Player: Decodable {
     case lineIn = "LINE_IN"
     case audioClipNotifications = "AUDIO_CLIP"
   }
-  
+
   let id: String
   let name: String
   let websocketUrl: URL
@@ -38,18 +38,18 @@ struct Player: Decodable {
   let apiVersion: String
   let minApiVersion: String
   let capabilities: [Capabilities]
-  
+
   enum CodingKeys: String, CodingKey {
-    case name = "name"
-    case websocketUrl = "websocketUrl"
-    case restUrl = "restUrl"
-    case deviceIds = "deviceIds"
-    case id = "id"
-    case apiVersion = "apiVersion"
-    case minApiVersion = "minApiVersion"
-    case capabilities = "capabilities"
+    case name
+    case websocketUrl
+    case restUrl
+    case deviceIds
+    case id
+    case apiVersion
+    case minApiVersion
+    case capabilities
   }
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.id = try container.decode(String.self, forKey: .id)

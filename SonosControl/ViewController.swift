@@ -10,54 +10,53 @@ extension Sonos.Configuration {
     }
     let dict = NSDictionary(contentsOf: url)!
     return Sonos.Configuration(redirectURL: URL(string: "https://sonoscontrol.343max.de/authorized.php")!,
-                               clientKey: dict["SonosAPIKey"] as! String,
-                               clientSectret: dict["SonosAPISecret"] as! String)
+                               clientKey: dict["SonosAPIKey"] as! String,  // swiftlint:disable:this force_cast
+                               clientSectret: dict["SonosAPISecret"] as! String)  // swiftlint:disable:this force_cast
   }
 }
 
 class ViewController: UIViewController {
   var authenticationSession: ASWebAuthenticationSession?
   var sonos: Sonos!
-  
+
   override func viewDidLoad() {
     sonos = Sonos(configuration: .appConfig())
-    
-    if let accessToken = try! Keychain.getAccessToken() {
+
+    if let accessToken = try! Keychain.getAccessToken() {  // swiftlint:disable:this force_try
       sonos.accessToken = accessToken
-      loadHousehold()
+      try! loadHousehold() // swiftlint:disable:this force_try
     } else {
       let url = sonos.loginURL(state: "hello")
-      let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "de.343max.sonoscontrol") { (url, error) in
+      let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "de.343max.sonoscontrol") { (url, _) in
         guard let url = url else {
           return
         }
-        
+
         let authorizationCode = Sonos.authorizationCode(from: url)
         self.sonos.createAccessToken(authorizationCode: authorizationCode).then {
-          try! Keychain.set(accessToken: $0)
+          try! Keychain.set(accessToken: $0) // swiftlint:disable:this force_try
           self.sonos.accessToken = $0
-          self.loadHousehold()
+          try! self.loadHousehold() // swiftlint:disable:this force_try
         }
       }
       authenticationSession.start()
       self.authenticationSession = authenticationSession
     }
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
   }
-  
-  func loadHousehold() {
-    try! sonos.households().then {
+
+  func loadHousehold() throws {
+    try sonos.households().then {
       print("households: \($0)")
-      }.then {
-        $0.forEach({ (id) in
-          try! self.sonos.household(id: id).then {
-            print("household: \($0)")
-          }
-        })
+    }.then {
+      $0.forEach({ (id) in
+        try! self.sonos.household(id: id).then { // swiftlint:disable:this force_try
+          print("household: \($0)")
+        }
+      })
     }
   }
 }
-

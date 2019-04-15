@@ -6,7 +6,7 @@ struct Keychain {
   enum KeychainError: Error {
     case error(status: OSStatus)
   }
-  
+
   static func add(tag: String, key: Data) throws {
     let query: [String: Any] = [kSecClass as String: kSecClassKey,
                                 kSecAttrApplicationTag as String: tag,
@@ -16,7 +16,7 @@ struct Keychain {
       throw KeychainError.error(status: status)
     }
   }
-  
+
   static func get(tag: String) throws -> Data? {
     let query: [String: Any] = [kSecClass as String: kSecClassKey,
                                 kSecAttrApplicationTag as String: tag,
@@ -31,7 +31,7 @@ struct Keychain {
     }
     return item as? Data
   }
-  
+
   static func delete(tag: String) throws {
     let query: [String: Any] = [kSecClass as String: kSecClassKey,
                                 kSecAttrApplicationTag as String: tag]
@@ -40,7 +40,7 @@ struct Keychain {
       throw KeychainError.error(status: status)
     }
   }
-  
+
   static func set(tag: String, key: Data) throws {
     try delete(tag: tag)
     try add(tag: tag, key: key)
@@ -52,12 +52,12 @@ extension Keychain {
     let data = try JSONEncoder().encode(value)
     try add(tag: tag, key: data)
   }
-  
+
   static func set<T>(tag: String, value: T) throws where T: Encodable {
     try delete(tag: tag)
     try add(tag: tag, value: value)
   }
-  
+
   static func get<T>(tag: String, type: T.Type) throws -> T? where T: Decodable {
     guard let data = try get(tag: tag) else {
       return nil

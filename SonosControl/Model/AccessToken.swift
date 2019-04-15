@@ -3,7 +3,7 @@
 import Foundation
 
 /*
- 
+
  {
  "access_token":"a5771c41-f3e3-45de-a0dc-311ff03816dc",
  "token_type":"Bearer",
@@ -12,7 +12,7 @@ import Foundation
  "resource_owner":"997007071",
  "scope":"scope_test"
  }
- 
+
 */
 
 struct AccessToken: Codable {
@@ -21,7 +21,7 @@ struct AccessToken: Codable {
   let expires: Date
   let refreshToken: String
   let scope: String
-  
+
   enum CodingKeys: String, CodingKey {
     case accessToken = "access_token"
     case tokenType = "token_type"
@@ -30,7 +30,7 @@ struct AccessToken: Codable {
     case refreshToken = "refresh_token"
     case scope = "scope"
   }
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.accessToken = try container.decode(String.self, forKey: .accessToken)
@@ -43,7 +43,7 @@ struct AccessToken: Codable {
     self.refreshToken = try container.decode(String.self, forKey: .refreshToken)
     self.scope = try container.decode(String.self, forKey: .scope)
   }
-  
+
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.accessToken, forKey: .accessToken)
@@ -59,7 +59,7 @@ extension Keychain {
   static func getAccessToken() throws -> AccessToken? {
     return try get(tag: accessTokenTag, type: AccessToken.self)
   }
-  
+
   static func set(accessToken: AccessToken) throws {
     try set(tag: accessTokenTag, value: accessToken)
   }

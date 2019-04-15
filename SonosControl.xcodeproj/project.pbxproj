@@ -96,7 +96,9 @@
 				BBEF4D20217667DE00C2B411 /* SonosControlTests */,
 				BBEF4D0A217667DC00C2B411 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		BBEF4D0A217667DC00C2B411 /* Products */ = {
 			isa = PBXGroup;
@@ -147,6 +149,7 @@
 				BBEF4D05217667DC00C2B411 /* Sources */,
 				BBEF4D06217667DC00C2B411 /* Frameworks */,
 				BBEF4D07217667DC00C2B411 /* Resources */,
+				CFE1023622649F2A00569681 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -235,6 +238,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CFE1023622649F2A00569681 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BBEF4D05217667DC00C2B411 /* Sources */ = {

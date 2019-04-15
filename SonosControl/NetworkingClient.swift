@@ -2,9 +2,9 @@
 
 import Foundation
 
-enum HTTPMethod : String {
-  case GET = "GET"
-  case POST = "POST"
+enum HTTPMethod: String {
+  case GET
+  case POST
 }
 
 protocol NetworkingClient {
@@ -15,14 +15,14 @@ protocol NetworkingClient {
 }
 
 extension NetworkingClient {
-  func send<T>(request: URLRequest, type: T.Type) -> Promise<T> where T : Decodable {
+  func send<T>(request: URLRequest, type: T.Type) -> Promise<T> where T: Decodable {
     return Promise<T>({ (completion, promise) in
       send(request: request) { (data, _, error) in
         guard let data = data else {
           promise.throw(error: error!)
           return
         }
-        
+
         do {
           let result = try JSONDecoder().decode(type, from: data)
           completion(result)

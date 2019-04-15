@@ -9,13 +9,12 @@ class URLParameterTests: XCTestCase {
     XCTAssertEqual(url.query, "a=b&c=d")
     XCTAssertEqual(url.queryItems, ["a": "b", "c": "d"])
   }
-  
+
   func testGetWithSpace() {
     let url = URL(string: "http://abc/def?a=b%20d")!
     XCTAssertEqual(url.queryItems, ["a": "b d"])
   }
 }
-
 
 class DictionaryQueryItems: XCTestCase {
   func testEmptyDict() {
@@ -23,14 +22,14 @@ class DictionaryQueryItems: XCTestCase {
     let queryString = dict.queryString
     XCTAssertEqual(queryString, "")
   }
-  
+
   func testSimpleDict() {
     let queryString = [
       "a": "b"
     ].queryString
     XCTAssertEqual(queryString, "a=b")
   }
-  
+
   func testLongerDict() {
     let queryString = [
       "a": "b",
@@ -38,7 +37,7 @@ class DictionaryQueryItems: XCTestCase {
     ].queryString
     XCTAssertEqual(queryString, "a=b&c=d")
   }
-  
+
   func testSpecialChars() {
     let queryString = [
       "a": "b c"

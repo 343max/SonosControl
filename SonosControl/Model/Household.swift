@@ -16,12 +16,12 @@ import Foundation
 struct Household: Decodable {
   let players: [Player]
   let groups: [Group]
-  
+
   enum CodingKeys: String, CodingKey {
-    case players = "players"
-    case groups = "groups"
+    case players
+    case groups
   }
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.players = try container.decode([Player].self, forKey: .players)

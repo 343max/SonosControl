@@ -3,7 +3,7 @@
 import Foundation
 
 /*
- 
+
  {
  "playerIds": [
  "RINCON_7DQQGH13GH4Q12345"
@@ -13,7 +13,7 @@ import Foundation
  "id": "RINCON_7DQQGH13GH4Q12345:218",
  "name": "p5"
  }
- 
+
 */
 
 enum PlaybackState: String {
@@ -29,15 +29,15 @@ struct Group: Decodable {
   let playbackState: PlaybackState
   let coordinatorId: String
   let playerIds: [String]
-  
+
   enum CodingKeys: String, CodingKey {
-    case id = "id"
-    case name = "name"
-    case playbackState = "playbackState"
-    case coordinatorId = "coordinatorId"
-    case playerIds = "playerIds"
+    case id
+    case name
+    case playbackState
+    case coordinatorId
+    case playerIds
   }
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.id = try container.decode(String.self, forKey: .id)
