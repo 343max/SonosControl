@@ -4,18 +4,17 @@ import Foundation
 
 /*
 
- {
- "id": "RINCON_7828CA1D4E0201400",
- "name": "Wohnzimmer",
- "websocketUrl": "wss:\/\/192.168.0.56:1443\/websocket\/api",
- "restUrl": "https:\/\/192.168.0.56:1443\/api",
- "softwareVersion": "46.3-57250",
- "deviceIds": ["RINCON_7828CA1D4E0201400"],
- "apiVersion": "1.8.0",
- "minApiVersion": "1.1.0",
- "capabilities": ["PLAYBACK", "CLOUD", "AIRPLAY"]
- }
 
+ "id": "RINCON_7828CA1D4E0201400",
+ "name": "Sonos",
+ "websocketUrl": "wss:\/\/192.168.178.25:1443\/websocket\/api",
+ "softwareVersion": "49.2-63270",
+ "apiVersion": "1.11.1",
+ "minApiVersion": "1.1.0",
+ "capabilities": ["PLAYBACK", "CLOUD", "AIRPLAY", "VOICE", "AUDIO_CLIP"],
+ "deviceIds": ["RINCON_7828CA1D4E0201400"]
+ }
+ 
  */
 
 struct Player: Decodable {
@@ -28,12 +27,12 @@ struct Player: Decodable {
     case airplay = "AIRPLAY"
     case lineIn = "LINE_IN"
     case audioClipNotifications = "AUDIO_CLIP"
+    case voice = "VOICE"
   }
 
   let id: String
   let name: String
   let websocketUrl: URL
-  let restUrl: URL
   let deviceIds: [String]
   let apiVersion: String
   let minApiVersion: String
@@ -42,7 +41,6 @@ struct Player: Decodable {
   enum CodingKeys: String, CodingKey {
     case name
     case websocketUrl
-    case restUrl
     case deviceIds
     case id
     case apiVersion
@@ -55,7 +53,6 @@ struct Player: Decodable {
     self.id = try container.decode(String.self, forKey: .id)
     self.name = try container.decode(String.self, forKey: .name)
     self.websocketUrl = try URL(string: container.decode(String.self, forKey: .websocketUrl))!
-    self.restUrl = try URL(string: container.decode(String.self, forKey: .restUrl))!
     self.deviceIds = try container.decode([String].self, forKey: .deviceIds)
     self.apiVersion = try container.decode(String.self, forKey: .apiVersion)
     self.minApiVersion = try container.decode(String.self, forKey: .minApiVersion)

@@ -27,6 +27,7 @@ extension NetworkingClient {
           let result = try JSONDecoder().decode(type, from: data)
           completion(result)
         } catch {
+          promise.throw(error: error)
           print(error)
         }
       }
